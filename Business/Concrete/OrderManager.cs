@@ -4,13 +4,10 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using Core.Utilities.Logger;
 using Core.Aspects.Autofac.Validation;
-using Core.Aspects.Autofac.Logging;
-using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Business.ValidationRules.FluentValidation;
 using Business.RabbitMQ.Producer;
-using Business.RabbitMQ.Consumer;
 
 
 namespace Business.Concrete
@@ -23,7 +20,7 @@ namespace Business.Concrete
             _orderDal = orderDal;
         }
 
-        //[ValidationAspect(typeof(OrderValidator))]
+        [ValidationAspect(typeof(OrderValidator))]
         public IResult Add(Order order)
         {
             var result = BusinessRules.Run();

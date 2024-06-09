@@ -18,10 +18,7 @@ class Program
         ITrigger trigger = TriggerBuilder.Create()
             .WithIdentity("dailyTrigger", "group1")
             .StartNow()
-             //.WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(6, 0))
-            .WithSimpleSchedule(x => x
-               .WithIntervalInSeconds(15)
-               .RepeatForever())
+            .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(6, 0))
             .Build();
 
         await scheduler.ScheduleJob(job, trigger);
